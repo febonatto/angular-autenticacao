@@ -1,0 +1,55 @@
+<div id="login" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"
+    tabindex="-1" aria-labelledby="modal-label" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 id="modal-label" class="modal-title">
+                    <i class="bi bi-door-open me-2"></i>
+                    Entrar
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"
+                    (click)="closeModal()"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3 warning" *ngIf="invalidAccount">
+                    <span>Email ou senha incorretos.</span>
+                </div>
+                <form [formGroup]="form" class="row g-3">
+                    <div class="input-container col-12">
+                        <input type="text" id="email" [ngClass]="validateField('email')" class="form-control"
+                            formControlName="email" required>
+                        <label for="email" [ngClass]="labelColor('email')" class="form-label">
+                            <i class="bi bi-envelope me-1"></i>
+                            Email
+                        </label>
+                        <div class="invalid-feedback">
+                            <span *ngIf="form.controls.email.touched &&
+                                form.controls.email.errors?.required">O campo email é obrigatório.</span>
+                            <span *ngIf="form.controls.email.touched &&
+                                form.controls.email.errors?.email">Digite um email válido.</span>
+                        </div>
+                    </div>
+                    <div class="input-container col-12">
+                        <input type="password" id="password" [ngClass]="validateField('password')" class="form-control"
+                            formControlName="password" required>
+                        <label for="password" [ngClass]="labelColor('password')" class="form-label">
+                            <i class="bi bi-key me-1"></i>
+                            Senha
+                        </label>
+                        <div class="invalid-feedback">
+                            <span *ngIf="form.controls.password.touched &&
+                                form.controls.password.errors?.required">O campo senha é obrigatório.</span>
+                            <span *ngIf="form.controls.password.touched &&
+                                form.controls.password.errors?.minlength">O tamanho mínimo da senha é 6 caracteres.</span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                    (click)="closeModal()">Fechar</button>
+                <button type="submit" class="btn btn-primary" (click)="login()">Entrar</button>
+            </div>
+        </div>
+    </div>
+</div>

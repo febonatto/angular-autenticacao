@@ -1,1 +1,10 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+    margin-top: 85px !important;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:valid {
+    box-shadow: 0 0 0px 1000px #ffffff inset !important;
+}

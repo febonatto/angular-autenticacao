@@ -1,0 +1,26 @@
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Data</th>
+                <th scope="col">Horário</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Localização</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let release of releases">
+                <td>{{ release.id }}</td>
+                <td>{{ release.data.replace(' ', 'T') | date:'dd/MM/yyyy' }}</td>
+                <td>{{ release.data | date:'HH:mm' }}</td>
+                <td>{{ release.tipo | type }}</td>
+                <td>
+                    <a href="https://www.google.com.br/maps/place/{{release.localizacao}}" target="_blank">
+                        {{ release.localizacao }}
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
