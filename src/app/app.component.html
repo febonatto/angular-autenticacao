@@ -10,6 +10,10 @@
         </div>
         <div class="col-8 text-end">
             <ul class="nav justify-content-end">
+                <li class="nav-item text-white">
+                    <i class="bi bi-clock me-2"></i>
+                    {{ datetime | date:'HH:mm' }}
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" [routerLink]="['/releases']">Lançamentos</a>
                 </li>

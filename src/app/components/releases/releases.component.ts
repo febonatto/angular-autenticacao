@@ -10,13 +10,18 @@ import { Release } from './../../models/release.model';
 })
 export class ReleasesComponent implements OnInit {
 
+  currentDatetime: string = '';
+
   constructor(private releasesService: ReleasesService) { }
 
   releases: Array<Release> = [];
 
   ngOnInit(): void {
     this.releasesService.readReleases()
-      .subscribe(success => this.releases = success.data.content);
+      .subscribe(
+        success => this.releases = success.data.content,
+        err => console.log(err)
+      );
   }
 
 }
