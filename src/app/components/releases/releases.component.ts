@@ -28,4 +28,8 @@ export class ReleasesComponent implements OnInit {
     this.releasesService.downloadCSV(this.releases);
   }
 
+  downloadPDF(): void {
+    this.releasesService.downloadPDF(this.releases);
+  }
+
 }

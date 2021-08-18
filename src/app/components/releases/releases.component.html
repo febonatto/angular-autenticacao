@@ -1,8 +1,12 @@
 <div class="container">
-    <div class="text-end">
-        <button type="button" class="btn btn-secondary mb-2" (click)="downloadCSV()">
+    <div class="text-end mb-2">
+        <button type="button" class="btn btn-secondary me-1" (click)="downloadCSV()">
             <i class="bi bi-file-earmark-spreadsheet me-2"></i>
             Download CSV
+        </button>
+        <button type="button" class="btn btn-danger" (click)="downloadPDF()">
+            <i class="bi bi-file-earmark-pdf me-2"></i>
+            Download PDF
         </button>
     </div>
     <table class="table table-hover">

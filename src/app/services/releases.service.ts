@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { UserService } from './user.service';
 import { Observable } from 'rxjs';
 import { saveAs } from 'file-saver';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
 
 import { User } from './../models/user.model';
 import { environment as env } from 'src/environments/environment';
@@ -43,6 +45,36 @@ export class ReleasesService {
 
     const blob = new Blob([columns + lines.join('\n')], { type: 'text/csv' });
     saveAs(blob, 'releases.csv');
+  }
+
+  downloadPDF(releases: Array<Release>): void {
+    const columns: Array<Array<string>> = [['ID', 'Data', 'Hora', 'Tipo', 'Localização']];
+    const lines: Array<Array<any>> = [];
+    
+    releases.forEach(
+      (release: Release) => {
+        const date = new Date(release.data);
+        const hour = release.data.split(' ')[1].substring(0, 5);
+        const dateFormated = `${date.getDate() < 10 ? '0' + date.getDate() : date.getDate()}/${date.getMonth() < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)}/${date.getFullYear()}`;
+
+        lines.push(
+          [
+            release.id,
+            dateFormated,
+            hour,
+            release.tipo,
+            release.localizacao
+          ]
+        );
+      }
+    );
+     
+    const doc = new jsPDF();
+    (doc as any).autoTable({
+      head: columns,
+      body: lines
+    });
+    doc.save('releases.pdf');
   }
 
 }
