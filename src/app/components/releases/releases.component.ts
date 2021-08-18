@@ -10,11 +10,11 @@ import { Release } from './../../models/release.model';
 })
 export class ReleasesComponent implements OnInit {
 
+  releases: Array<Release> = [];
   currentDatetime: string = '';
 
   constructor(private releasesService: ReleasesService) { }
-
-  releases: Array<Release> = [];
+  
 
   ngOnInit(): void {
     this.releasesService.readReleases()
@@ -22,6 +22,10 @@ export class ReleasesComponent implements OnInit {
         success => this.releases = success.data.content,
         err => console.log(err)
       );
+  }
+
+  downloadCSV(): void {
+    this.releasesService.downloadCSV(this.releases);
   }
 
 }
